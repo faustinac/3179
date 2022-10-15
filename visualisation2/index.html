@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+<title>Visualisation 2 </title>
+</head>
+<body>
+<h1>Crime in Victoria</h1>
+<div id="map">
+</div>
+<div id="stacked_bar">
+</div>
+<div id="grouped_bar">
+</div>
+<div id="scatterplot">
+</div>
+
+<script type="text/javascript">
+    var vg_1 = "choropleth.vg.json";
+    var vg_2 = "stacked_bar.vg.json";
+    var vg_3 = "grouped_bar.vg.json";
+    var vg_4 = "scatterplot.vg.json";
+
+    vegaEmbed("#map", vg_1)
+      .then(function (result) {})
+      .catch(console.error);
+      
+    vegaEmbed("#stacked_bar", vg_2)
+      .then(function (result) {})
+      .catch(console.error);
+
+    vegaEmbed("#grouped_bar", vg_3)
+      .then(function (result) {})
+      .catch(console.error);
+
+    vegaEmbed("#scatterplot", vg_4)
+      .then(function (result) {})
+      .catch(console.error);
+    </script>
+
+</body>
+</html>
