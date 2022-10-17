@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Family Incidents and Rate per 100,000 population by Police Region and LGA",
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/faustinac/3179/main/visualisation2/data/family.csv"
+  },
+  "transform": [
+      {"filter": "datum.Year == Year_selection"},
+      {"filter": "datum['Police Region'] !== 'Justice Institutions and Immigration Facilities' && datum['Police Region'] !== 'Unincorporated Vic'"},
+      {"filter": "datum['Local Government Area'] !== 'Total'"}
+  ],
+        "params": [
+    {
+      "name": "Year_selection",
+      "value": 2022,
+      "bind": {
+        "input": "range",
+        "min": 2018,
+        "max": 2022,
+        "step": 1,
+        "name": "Year:  "
+      }
+    },
+    {
+      "name": "highlight",
+      "select": {"type": "point", "fields": ["Police Region"]},
+      "bind": "legend"
+}
+
+  ],
+  "mark": {"type": "point", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "Family Incidents",
+      "type": "quantitative",
+      "title": "Family Incidents Recorded"
+    },
+    "y": {
+      "field": "Rate",
+      "type": "quantitative",
+      "title": "Rate per 100,000 population"
+    },
+    "color": {"field": "Police Region", "type": "nominal", "scale": {"scheme": "darkred"}},
+    "opacity": {
+"condition": {"param": "highlight", "value": 1},
+"value": 0.15
+},
+"tooltip": [
+  {"field": "Local Government Area", "type": "nominal"},
+{"field": "Family Incidents", "type": "quantitative", "format": ",","title": "Family Incidents Recorded"},
+{"field": "Rate", "type": "quantitative", "format": ",", "title": "Rate per 100,000 population"},
+{"field": "Police Region", "type": "nominal"},
+{"field": "Year", "type": "quantitative"}
+]
+  },
+  "background": "lightgray"
+}

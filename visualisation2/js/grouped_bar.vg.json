@@ -1,0 +1,19 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Criminal Incidents by Offence Category (5 year trend)",
+    "height": 190, 
+    "width": "container",
+    "data": {
+      "url": "https://raw.githubusercontent.com/faustinac/3179/main/visualisation2/data/CI_LGA_POa_data.csv"
+    },
+    
+    "mark": {"type": "bar", "tooltip": true},
+    "encoding": {
+      "x": {"field": "Offence Division", "axis": {"labelAngle": 45}},
+      "y": {"field": "Incidents Recorded", "type": "quantitative"},
+      "xOffset": {"field": "Year"},
+      "color": {"field": "Year",
+      "scale": {"scheme": "orangered"}}
+    },
+    "background": "lightgray"
+  }

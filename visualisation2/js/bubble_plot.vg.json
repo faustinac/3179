@@ -1,0 +1,34 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/faustinac/3179/main/visualisation2/data/offence_subdiv2.csv"
+    },
+    "width": 600,
+    "height": 400,
+    "mark": {
+      "type": "circle",
+      "opacity": 0.8,
+      "stroke": "black",
+      "strokeWidth": 1
+    },
+    "transform": [
+      { "filter": "datum['Offence Subdivision'] == 'A20 Assault and related offences' || datum['Offence Subdivision'] == 'A50 Robbery' || datum['Offence Subdivision'] == 'A70 Stalking, harassment and threatening behaviour' || datum['Offence Subdivision'] == 'B20 Property damage' || datum['Offence Subdivision'] == 'B30 Burglary/Break and enter' || datum['Offence Subdivision'] == 'B40 Theft' || datum['Offence Subdivision'] == 'B50 Deception' || datum['Offence Subdivision'] == 'B60 Bribery' || datum['Offence Subdivision'] == 'C30 Drug use and possession'"}],
+
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "axis": {"grid": false}
+      },
+      "y": {"field": "Offence Subdivision", "type": "nominal", "axis": {"title": ""}},
+      "size": {
+        "aggregate": "sum",
+        "field": "Incidents Recorded",
+        "type": "quantitative",
+        "title": "Incidents Recorded",
+        "legend": {"clipHeight": 30},
+        "scale": {"rangeMax": 3000}
+      },
+      "color": {"field": "Offence Subdivision", "type": "nominal", "legend": null}
+    }
+  }

@@ -1,0 +1,83 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "High Harm Caused by Crime by Sex and Age (2013-2022)",
+    "data": { "url": "https://raw.githubusercontent.com/faustinac/3179/main/visualisation2/data/gender_age.csv"},
+    "transform": [
+      {"filter": "datum.Year == Year_selection"},
+      {"filter": "datum['Harm Caused Flag'] == 'High Harm'"},
+      {"filter": "datum['Age Group'] !== 'Total'"}
+    ],
+      "params": [
+      {
+        "name": "Year_selection",
+        "value": 2022,
+        "bind": {
+          "input": "range",
+          "min": 2013,
+          "max": 2022,
+          "step": 1,
+          "name": "Year:  "
+        }
+      }
+    ],
+    "spacing": 0,
+    "hconcat": [{
+      "transform": [{
+        "filter": {"field": "Sex", "equal": "Females"}
+      }],
+      "title": "Female",
+      "mark": {"type":"bar", "tooltip":true},
+      "encoding": {
+        "y": {
+          "field": "Age Group", "axis": null, "sort": "descending"
+        },
+        "x": {
+          "aggregate": "sum", "field": "Victim Reports",
+          "title": "Victim Reports",
+          "sort": "descending"
+        },
+        "color": {
+          "field": "Sex",
+          "scale": {"range": ["coral", "crimson"]},
+          "legend": null
+        }
+      }
+    }, {
+      "width": 20,
+      "view": {"stroke": null},
+      "mark": {
+        "type": "text",
+        "align": "center"
+      },
+      "encoding": {
+        "y": {"field": "Age Group", "type": "ordinal", "axis": null, "sort": "descending"},
+        "text": {"field": "Age Group", "type": "nominal"}
+      }
+    }, {
+      "transform": [{
+        "filter": {"field": "Sex", "equal": "Males"}
+      }],
+      "title": "Male",
+      "mark": {"type":"bar", "tooltip":true},
+      "encoding": {
+        "y": {
+          "field": "Age Group", "title": null,
+          "axis": null, "sort": "descending"
+        },
+        "x": {
+          "aggregate": "sum", "field": "Victim Reports",
+          "title": "Victim Reports"
+        },
+        "color": {
+          "field": "Sex",
+          "legend": null
+        }
+      }
+    }],
+    "config": {
+      "view": {"stroke": null},
+      "axis": {"grid": false}
+    },
+    "background": "lightgray"
+  }
+  

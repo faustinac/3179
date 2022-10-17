@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Offences Recorded over the past 10 years",
+  "width": 380,
+  "height": 235,
+  "data": {"url": "https://raw.githubusercontent.com/faustinac/3179/main/visualisation2/data/OR_LGA_OFFENCEa_data.csv"},
+  "params": [
+        {
+    "name": "highlight",
+    "select": {"type": "point", "fields": ["Offence Division"]},
+    "bind": "legend"
+}
+  ],
+      "mark": {
+    "type": "line",
+    "tooltip": true,
+    "point": {
+      "filled": false,
+      "fill": "white"
+    }
+  },
+      "encoding": {
+    "x": {"field": "Year"},
+    "y": {"aggregate":"sum", "field": "Final_Offences Recorded", "type": "quantitative", "title": "Total Offences Recorded"},
+    "color": {"field": "Offence Division", "type": "nominal",
+    "scale": {"scheme": "darkred"}},
+    "opacity": {
+"condition": {"param": "highlight", "value": 1},
+"value": 0.15
+}
+  },
+"background": "lightgray",
+"config": {
+  "legend": {"orient": "bottom", "direction": "vertical"}
+}
+}
